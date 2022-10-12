@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Videogame, Genres } = require('../db.js');
+const { Videogame, Genre } = require('../db.js');
 const { APIKEY } = process.env;
 
 // getApiInfo ------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ const getDBInfo = async () => {
     try {
         return await Videogame.findAll({
             include: {
-                model: Genres,
+                model: Genre,
                 attributes: ['name'],
                 through: {
                     attributes: [],
@@ -60,15 +60,52 @@ const getAllVideoGames = async () => {
     }
 };
 
-
 // getAllGenres ----------------------------------------------------------------------------------------
 const getAllGenres = async () => {
     try {
+        let info = await axios.get(`https://api.rawg.io/api/genres?key=${APIKEY}`)
+
+        let dataGenres = info.data.results.map(g => g.name);
+        dataGenres.forEach(genre => {
+            Genre.findOrCreate({
+                where: { name: genre }
+            });
+        });
+
+        let allGenres = await Genre.findAll();
+        return allGenres;
 
     } catch (error) {
         console.log('ERROR EN controller: getApiInfo', error);
     }
 };
 
+// postVideogame ---------------------------------------------------------------------------------------
+const postVideogame = async (data) => {
+    try {
+        const { name, image, description, released, rating, platforms, genres } = data;
+
+        let videogame = {
+            name,
+            image,
+            description,
+            released,
+            rating,
+            platforms, // cambiarlo para que sea un array
+        }
+
+        let newVideogame = await Videogame.create(videogame)
+        genres.map(async g => {
+            let genre = await Genre.findAll({
+                where: { name: g }
+            });
+            newVideogame.addGenre(genre)
+        });
+
+    } catch (error) {
+         console.log('ERROR EN postVideogame', error)
+    }
+};
+
 //------------------------------------------------------------------------------------------------------
-module.exports = { getApiInfo, getDBInfo, getAllVideoGames, getAllGenres };
+module.exports = { getApiInfo, getDBInfo, getAllVideoGames, getAllGenres, postVideogame };
