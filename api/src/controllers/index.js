@@ -60,6 +60,29 @@ const getAllVideoGames = async () => {
     }
 };
 
+// getVideogameId -------------------------------------------------------------------------------------
+const getVideogameId = async (id) => {
+    try {
+        let info = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APIKEY}`)
+
+        info = info.data
+        let videogame = {
+            id: info.id,
+            name: info.name,
+            image: info.background_image,
+            description: info.description_raw,
+            released: info.released,
+            rating: info.rating,
+            platforms: info.platforms.map(p => p.platform.name),
+            genres: info.genres.map(g => g.name)
+        }
+        return videogame;
+
+    } catch (error) {
+        console.log('ERROR EN controller: getVideogameId', error);
+    }
+};
+
 // getAllGenres ----------------------------------------------------------------------------------------
 const getAllGenres = async () => {
     try {
@@ -80,7 +103,7 @@ const getAllGenres = async () => {
     }
 };
 
-// postVideogame ---------------------------------------------------------------------------------------
+// postVideogame --------------------------------------------------------------------------------------- +
 const postVideogame = async (data) => {
     try {
         const { name, image, description, released, rating, platforms, genres } = data;
@@ -103,9 +126,9 @@ const postVideogame = async (data) => {
         });
 
     } catch (error) {
-         console.log('ERROR EN postVideogame', error)
+        console.log('ERROR EN postVideogame', error)
     }
 };
 
 //------------------------------------------------------------------------------------------------------
-module.exports = { getApiInfo, getDBInfo, getAllVideoGames, getAllGenres, postVideogame };
+module.exports = { getApiInfo, getDBInfo, getAllVideoGames, getVideogameId, getAllGenres, postVideogame };
