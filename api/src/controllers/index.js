@@ -114,7 +114,7 @@ const postVideogame = async (data) => {
             description,
             released,
             rating,
-            platforms, // cambiarlo para que sea un array
+            platforms,
         }
 
         let newVideogame = await Videogame.create(videogame)
