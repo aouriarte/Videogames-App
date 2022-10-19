@@ -1,0 +1,99 @@
+.header {
+  position: relative;
+  height: 7rem;
+  max-width: 100%;
+  padding: 0 5rem;
+  display: flex;
+  align-items: center;
+  background: rgb(0, 40, 78);
+  box-shadow: 0rem 0.1875rem 0.375rem #54e6e7;
+}
+
+/* Logo + Videogame-App */
+.div {
+  display: flex;
+  width: 28rem;
+  height: 5rem;
+  background: rgba(0, 61, 71, 0.363);
+  border-radius: 5px;
+  border: solid rgb(231, 224, 224) 2px;
+  justify-content: center;
+}
+
+.img {
+  margin-top: -0.5rem;
+  margin-left: -3rem;
+}
+
+.h1 {
+  font-family: "Silkscreen";
+  color: #ffff;
+  text-shadow: 2px 2px 1px #54e7e78f;
+}
+
+/* Button Create */
+.button {
+  margin-left: 3rem;
+  margin-top: 0.5rem;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 550;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 61, 71, 0.616);
+  border: solid rgb(231, 224, 224) 2px;
+  box-shadow: 0 0 6px #000000a8;
+  text-shadow: 1.2px 1px 1px #54e6e7;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #059494;
+  color: rgb(255, 254, 254);
+  box-shadow: 0 0 5px 5px #ffffffa8;
+}
+
+/* SearchBar */
+.searchBar {
+  display: flex;
+  margin-top: 0.5rem;
+  margin-left: 10rem;
+}
+
+.input {
+  padding: 9px 12px 7px 12px;
+  border-radius: 4px;
+  font-weight: 550;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 6px #000000a8;
+}
+
+.input:hover {
+  cursor: text;
+  box-shadow: 0 0 5px 7px #000000a8;
+}
+
+.b {
+  margin-left: 15px;
+  padding: 8px 17px;
+  border-radius: 5px;
+  font-weight: 550;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 61, 71, 0.616);
+  border: solid rgb(231, 224, 224) 2px;
+  box-shadow: 0 0 6px #000000a8;
+  text-shadow: 1.2px 1px 1px #54e6e7;
+}
+
+.b:hover {
+  cursor: pointer;
+  background-color: #059494;
+  color: rgb(255, 254, 254);
+  box-shadow: 0 0 5px 5px #ffffffa8;
+}
+
+/* Filter */
+.filters {
+  margin-top: 0.5rem;
+  margin-left: 3rem;
+}

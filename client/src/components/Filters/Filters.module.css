@@ -1,0 +1,23 @@
+.genres,
+.name,
+.rating {
+  margin-left: 1rem;
+  padding: 8px 6px;
+  border-radius: 5px;
+  font-weight: 550;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 61, 71, 0.616);
+  border: solid rgb(231, 224, 224) 2px;
+  box-shadow: 0 0 6px #000000a8;
+  text-shadow: 1.2px 1px 1px #54e6e7;
+  text-align: justify;
+}
+
+.genres:hover,
+.name:hover,
+.rating:hover {
+  cursor: pointer;
+  background-color: #059494;
+  color: rgb(255, 254, 254);
+  box-shadow: 0 0 5px 5px #ffffffa8;
+}

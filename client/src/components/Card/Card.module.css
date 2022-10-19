@@ -1,0 +1,24 @@
+.img {
+  margin-top: 15px;
+  width: 300px;
+  height: 200px;
+}
+
+.h3 {
+  color: #fff;
+  text-shadow: 2px 1px 1px #54e7e78f;
+}
+
+.p {
+  text-shadow: 1.5px 1.2px 1px #54e7e78f;
+  display: inline-block;
+  margin: 0.05rem 0.4rem 0.5rem;
+  font-size: smaller;
+  padding: 0.2rem 0.4rem;
+  margin-left: 4px;
+  border-radius: 4px;
+  background: rgba(0, 135, 156, 0.363);;
+  box-shadow: 0 0 4px #54e6e7;
+  color: #fff;
+  width: fit-content;
+}
