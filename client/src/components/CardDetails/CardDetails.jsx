@@ -33,7 +33,7 @@ const CardDetails = () => {
               {videogame.genres?.map((g, i) => {
                 return (
                   <p className={styles.genre} key={i}>
-                    {g}
+                    {g.name}
                   </p>
                 );
               })}

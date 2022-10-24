@@ -8,7 +8,7 @@ const Card = ({ image, name, genres }) => {
         <h3 className={styles.h3}>{name}</h3>
         {genres?.map((g) => (
           <p className={styles.p} key={g}>
-            {g.charAt(0).toUpperCase() + g.slice(1)}
+            {g}
             </p>
         ))}
     </div>

@@ -1,6 +1,4 @@
-.genres,
-.name,
-.rating {
+.select {
   margin-left: 1rem;
   padding: 8px 6px;
   border-radius: 5px;
@@ -13,9 +11,7 @@
   text-align: justify;
 }
 
-.genres:hover,
-.name:hover,
-.rating:hover {
+.select:hover {
   cursor: pointer;
   background-color: #059494;
   color: rgb(255, 254, 254);
