@@ -33,7 +33,7 @@ const getApiInfo = async () => {
 // getDBInfo -------------------------------------------------------------------------------------------
 const getDBInfo = async () => {
     try {
-        return await Videogame.findAll({
+        const infoDb = await Videogame.findAll({
             include: {
                 model: Genre,
                 attributes: ['name'],
@@ -42,6 +42,19 @@ const getDBInfo = async () => {
                 },
             },
         });
+        const newGame = await infoDb.map((n) => {
+            return {
+                id: n.id,
+                name: n.name,
+                image: n.image,
+                released: n.released,
+                rating: n.rating,
+                platforms: n.platforms,
+                genres: n.genres.map(g => g.name),
+                created: n.created,
+            };
+        });
+        return newGame;
 
     } catch (error) {
         console.log('ERROR EN controller: getApiInfo', error);
@@ -74,7 +87,7 @@ const getVideogameId = async (id) => {
             released: info.released,
             rating: info.rating,
             platforms: info.platforms.map(p => p.platform.name),
-            genres: info.genres.map(g => g.name)
+            genres: info.genres.map(g => { return { id: g.id, name: g.name } })
         }
         return videogame;
 
@@ -94,7 +107,6 @@ const getAllGenres = async () => {
                 where: { name: genre }
             });
         });
-
         let allGenres = await Genre.findAll();
         return allGenres;
 
@@ -108,22 +120,20 @@ const postVideogame = async (data) => {
     try {
         const { name, image, description, released, rating, platforms, genres } = data;
 
-        let videogame = {
-            name,
-            image,
-            description,
-            released,
-            rating,
-            platforms,
-        }
-
-        let newVideogame = await Videogame.create(videogame)
-        genres.map(async g => {
-            let genre = await Genre.findAll({
-                where: { name: g }
-            });
-            newVideogame.addGenre(genre)
+        let newVideogame = await Videogame.create(
+            {
+                name,
+                image,
+                description,
+                released,
+                rating,
+                platforms,
+            }
+        );
+        let genreDB = await Genre.findAll({
+            where: { name: genres }
         });
+        await newVideogame.addGenre(genreDB);
 
     } catch (error) {
         console.log('ERROR EN postVideogame', error)
