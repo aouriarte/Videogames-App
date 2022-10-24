@@ -1,19 +1,23 @@
-import { GET_ALL_VIDEOGAMES, GET_VIDEOGAME_NAME, GET_VIDEOGAME_DETAILS, POST_VIDEOGAME, GET_ALL_GENRES, FILTER_GENRES, ORDER_NAME, ORDER_RATING, CLEAN_DETAILS } from './actions.js';
+import { GET_ALL_VIDEOGAMES, GET_VIDEOGAME_NAME, GET_VIDEOGAME_DETAILS, POST_VIDEOGAME, GET_ALL_GENRES, FILTER_GENRES, FILTER_CREATED, ORDER_NAME, ORDER_RATING, CLEAN_DETAILS } from './actions.js';
 
 const initialState = {
     allVideogames: [],
     videogameDetails: {},
     videogamesFilter: [],
     allGenres: [],
+    platforms: [],
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case GET_ALL_VIDEOGAMES:
+            let platforms = [];
+            payload.map((p) => (platforms = [...platforms, ...p.platforms]));
             return {
                 ...state,
                 videogamesFilter: payload,
                 allVideogames: payload,
+                platforms: Array.from(new Set(platforms)),
             };
         case GET_ALL_GENRES:
             return {
@@ -43,6 +47,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 allVideogames: filterGenres
             };
+        case FILTER_CREATED:
+            const all = state.videogamesFilter;
+            const filterCreated = payload === "created"
+                ? all.filter((v) => v.created)
+                : all.filter((v) => !v.created);
+
+            return {
+                ...state,
+                allVideogames:
+                    payload === "all" ? state.allVideogames : filterCreated
+            };
         case ORDER_NAME:
             let sortName = state.allVideogames.sort((a, b) => {
                 if (a.name < b.name) return payload === "asc" ? -1 : 1;
@@ -53,7 +68,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 allVideogames: sortName
             };
-        case ORDER_RATING: // no anda DESC
+        case ORDER_RATING:
             const sorteArrRating =
                 payload === "desc"
                     ? state.videogamesFilter.sort(function (a, b) {

@@ -7,6 +7,7 @@ export const POST_VIDEOGAME = 'POST_VIDEOGAME';
 export const GET_ALL_GENRES = 'GET_ALL_GENRES';
 
 export const FILTER_GENRES = "FILTER_GENRES";
+export const FILTER_CREATED = "FILTER_CREATED";
 export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_RATING = "ORDER_RATING";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
@@ -82,6 +83,14 @@ export const getAllGenres = () => {
 export const filterGenres = (payload) => {
     return {
         type: FILTER_GENRES,
+        payload
+    }
+};
+
+// Filtrar por CREADOS:
+export const filterCreated = (payload) => {
+    return {
+        type: FILTER_CREATED,
         payload
     }
 };
