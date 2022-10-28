@@ -15,9 +15,9 @@ export default function validate(input) {
         errors.description = "Your videogame must have a description. Minimum 20 characters";
     } else if (input.image && !validateUrl.test(input.image)) {
         errors.image = "This is not a valid URL";
-    } else if (input.platforms.length === 0){
+    } else if (!input.platforms.length) {
         errors.platforms = "Select one or more platforms";
-    } else if(!input.genres.length === 0){
+    } else if (!input.genres.length) {
         errors.genres = "Select at least one Genre";
     }
     return errors;
