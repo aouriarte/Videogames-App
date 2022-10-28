@@ -1,9 +1,9 @@
 import { GET_ALL_VIDEOGAMES, GET_VIDEOGAME_NAME, GET_VIDEOGAME_DETAILS, POST_VIDEOGAME, GET_ALL_GENRES, FILTER_GENRES, FILTER_CREATED, ORDER_NAME, ORDER_RATING, CLEAN_DETAILS } from './actions.js';
 
 const initialState = {
-    allVideogames: [],
+    videogames: [],
     videogameDetails: {},
-    videogamesFilter: [],
+    allVideogames: [],
     allGenres: [],
     platforms: [],
 }
@@ -15,7 +15,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
             payload.map((p) => (platforms = [...platforms, ...p.platforms]));
             return {
                 ...state,
-                videogamesFilter: payload,
+                videogames: payload,
                 allVideogames: payload,
                 platforms: Array.from(new Set(platforms)),
             };
@@ -27,7 +27,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_VIDEOGAME_NAME:
             return {
                 ...state,
-                allVideogames: payload,
+                videogames: payload,
             };
         case GET_VIDEOGAME_DETAILS:
             return {
@@ -39,39 +39,39 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
             };
         case FILTER_GENRES:
-            const copyAll = state.videogamesFilter;
+            const copyAll = state.allVideogames;
             const filterGenres = payload === "all"
                 ? copyAll
                 : copyAll.filter((v) => v.genres.includes(payload));
             return {
                 ...state,
-                allVideogames: filterGenres
+                videogames: filterGenres,
             };
         case FILTER_CREATED:
-            const all = state.videogamesFilter;
+            const all = state.videogames;
             const filterCreated = payload === "created"
                 ? all.filter((v) => v.created)
                 : all.filter((v) => !v.created);
 
             return {
                 ...state,
-                allVideogames:
-                    payload === "all" ? state.allVideogames : filterCreated
+                videogames:
+                    payload === "all" ? state.videogames : filterCreated,
             };
         case ORDER_NAME:
-            let sortName = state.allVideogames.sort((a, b) => {
+            let sortName = state.videogames.sort((a, b) => {
                 if (a.name < b.name) return payload === "asc" ? -1 : 1;
                 if (a.name > b.name) return payload === "asc" ? 1 : -1;
                 return 0;
             });
             return {
                 ...state,
-                allVideogames: sortName
+                videogames: sortName,
             };
         case ORDER_RATING:
             const sorteArrRating =
                 payload === "desc"
-                    ? state.videogamesFilter.sort(function (a, b) {
+                    ? state.videogames.sort(function (a, b) {
                         if (a.rating > b.rating) {
                             return 1;
                         }
@@ -80,7 +80,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                         }
                         return 0;
                     })
-                    : state.videogamesFilter.sort(function (a, b) {
+                    : state.videogames.sort(function (a, b) {
                         if (a.rating > b.rating) {
                             return -1;
                         }
@@ -91,7 +91,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                     });
             return {
                 ...state,
-                allVideogames: sorteArrRating,
+                videogames: sorteArrRating,
             };
         case CLEAN_DETAILS:
             return {

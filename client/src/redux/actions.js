@@ -12,7 +12,6 @@ export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_RATING = "ORDER_RATING";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
 
-
 // ALL VIDEOGAMES: Traigo juegos -> BACK ---------------------------------------------
 export const getAllVideogames = () => {
     return async (dispatch) => {
@@ -34,7 +33,7 @@ export const getVideogameName = (name) => {
             dispatch({ type: GET_VIDEOGAME_NAME, payload: game.data });
 
         } catch (error) {
-            alert('That videogame does not exist');
+            alert('Videogame Not Found');
             console.log('ERROR EN getVideogameName/actions', error);
         }
     };
@@ -117,4 +116,4 @@ export const cleanDetails = (payload) => {
         type: CLEAN_DETAILS,
         payload
     }
-}; 
+};
