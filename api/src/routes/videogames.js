@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         const { name } = req.query;
         let info = await getAllVideoGames();
 
-        if (name) { // Primeros 15 juegos
+        if (name) {
             let gameName = info.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
             gameName.length
                 ? res.status(200).send(gameName)
