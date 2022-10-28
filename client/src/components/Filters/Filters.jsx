@@ -26,6 +26,7 @@ const Filters = ({ setPage, setOrder }) => {
     dispatch(filterCreated(e.target.value));
     setPage(1);
   };
+
   // ORDENAMIENTOS ---------------------------------------------
   const handleOrderName = (e) => {
     e.preventDefault();

@@ -69,3 +69,23 @@
   background-color: #059494;
   box-shadow: 0 0 4px #fff;
 }
+
+/* Button PREV & NEXT */
+.page {
+  border-radius: 4px;
+  border: none;
+  padding: 4px 8px 4px 8px;
+  font-family: "Silkscreen";
+  background-color: rgba(0, 61, 71, 0.363);
+  color: #fff;
+  border: solid rgb(231, 224, 224) 2px;
+  box-shadow: 0 0 6px #54e6e7;
+  font-size: 1.2rem;
+}
+
+.page:hover {
+  cursor: pointer;
+  background-color: #059494;
+  color: #fff;
+  box-shadow: 0 0 0px 2px #fff;
+}

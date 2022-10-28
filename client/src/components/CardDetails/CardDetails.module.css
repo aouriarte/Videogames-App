@@ -14,7 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20rem;
+  margin-top: -1rem;
 }
 
 /* Card */
@@ -103,6 +103,7 @@
 
 /* Button Go Home */
 .button {
+  margin-left: 3rem;
   font-size: 15px;
   padding: 8px 16px;
   border-radius: 5px;
@@ -115,6 +116,7 @@
   box-shadow: 0 0 6px #54e6e7;
   font-family: "Silkscreen";
 }
+
 .button:hover {
   cursor: pointer;
   color: #fff;

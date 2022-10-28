@@ -22,7 +22,7 @@ const NavBar = ({ setPage, setOrder }) => {
     setName("");
     setTimeout(() => {
       setPage(1);
-    }, 2000);
+    }, 6000); // 3000
   }
 
   return (

@@ -11,7 +11,7 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allVideogames = useSelector((state) => state.allVideogames);
+  const allVideogames = useSelector((state) => state?.videogames);
 
   // PAGINADO ----------------------------------------------------------------------------------
   const [order, setOrder] = useState("");
@@ -20,7 +20,7 @@ const Home = () => {
   const indexOfLastVideogames = page * videogamesPerPage;
   const indexFirstVideogames = indexOfLastVideogames - videogamesPerPage;
 
-  const currentVideogames = allVideogames.slice(
+  const currentVideogames = allVideogames?.slice(
     indexFirstVideogames,
     indexOfLastVideogames
   );
@@ -29,6 +29,16 @@ const Home = () => {
     setPage(pageNumber);
   };
 
+  // PAGINADO: NEXT & PREV ------------------------------------------------
+  function handlePrev(e) {
+    e.preventDefault();
+    setPage(page - 1);
+  }
+
+  function handleNext(e) {
+    e.preventDefault();
+    setPage(page + 1);
+  }
 
   //--------------------------------------------------------------------------------------------
   useEffect(() => {
@@ -40,7 +50,7 @@ const Home = () => {
     <div className={styles.home}>
       <NavBar setPage={setPage} setOrder={setOrder} />
       <div className={styles.container}>
-        {currentVideogames.length < 1 ? (
+        {currentVideogames?.length < 1 ? (
           <Loading />
         ) : (
           currentVideogames?.map((v, i) => {
@@ -65,11 +75,23 @@ const Home = () => {
         )}
       </div>
       <div>
+        {/* <button className={styles.page} onClick={(e) => handlePrev(e)} disabled={page <= 1}>
+          {" "}
+          Prev{" "}
+        </button> */}
         <Pagination
           videogamesPerPage={videogamesPerPage}
-          allVideogames={allVideogames.length}
+          allVideogames={allVideogames?.length}
           pagination={pagination}
         />
+        {/* <button
+        className={styles.page}
+          onClick={(e) => handleNext(e)}
+          disabled={currentVideogames.length < 15}
+        >
+          {" "}
+          Next{" "}
+        </button> */}
       </div>
     </div>
   );
