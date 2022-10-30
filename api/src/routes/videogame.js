@@ -31,5 +31,21 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// RUTA DELETE -> /videogame/:id ----------------------------------------------------
+router.delete('/:id', async (req, res) => { // faltaria hacerle el boton eliminar en el front
+    try {
+        const { id } = req.params;
+
+        await Videogame.destroy({
+            where: { id: id}
+        });
+        res.send('erased');
+        
+    } catch (error) {
+        res.status(400).send({ msg: 'ERROR EN RUTA DELETE A /videogame/:id'}, error)
+        
+    }
+});
+
 //-----------------------------------------------------------------------------------
 module.exports = router;
