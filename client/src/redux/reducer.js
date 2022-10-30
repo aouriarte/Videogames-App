@@ -1,4 +1,4 @@
-import { GET_ALL_VIDEOGAMES, GET_VIDEOGAME_NAME, GET_VIDEOGAME_DETAILS, POST_VIDEOGAME, GET_ALL_GENRES, FILTER_GENRES, FILTER_CREATED, ORDER_NAME, ORDER_RATING, CLEAN_DETAILS } from './actions.js';
+import { GET_ALL_VIDEOGAMES, GET_VIDEOGAME_NAME, GET_VIDEOGAME_DETAILS, POST_VIDEOGAME, GET_ALL_GENRES, CHANGE_PAGE, FILTER_GENRES, FILTER_CREATED, ORDER_NAME, ORDER_RATING, CLEAN_DETAILS, CLEAN_VIDEOGAMES } from './actions.js';
 
 const initialState = {
     videogames: [],
@@ -6,7 +6,10 @@ const initialState = {
     allVideogames: [],
     allGenres: [],
     platforms: [],
-}
+
+    videogamesPerPage: 15,
+    currentPage: 1
+};
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
@@ -28,6 +31,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 videogames: payload,
+                currentPage: 1,
             };
         case GET_VIDEOGAME_DETAILS:
             return {
@@ -38,6 +42,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
             };
+        case CHANGE_PAGE:
+            return {
+                ...state,
+                currentPage: Number(payload) ? parseInt(payload) : payload === 'Next' ? (parseInt(state.currentPage) + 1) : (parseInt(state.currentPage) - 1)
+
+            };
         case FILTER_GENRES:
             const copyAll = state.allVideogames;
             const filterGenres = payload === "all"
@@ -46,6 +56,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 videogames: filterGenres,
+                currentPage: 1,
             };
         case FILTER_CREATED:
             const all = state.videogames;
@@ -55,8 +66,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
             return {
                 ...state,
-                videogames:
-                    payload === "all" ? state.videogames : filterCreated,
+                videogames: payload === "all" ? state.videogames : filterCreated,
+                currentPage: 1,
             };
         case ORDER_NAME:
             let sortName = state.videogames.sort((a, b) => {
@@ -67,6 +78,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 videogames: sortName,
+                currentPage: 1,
             };
         case ORDER_RATING:
             const sorteArrRating =
@@ -92,11 +104,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 videogames: sorteArrRating,
+                currentPage: 1,
             };
         case CLEAN_DETAILS:
             return {
                 ...state,
                 videogameDetails: payload
+            };
+        case CLEAN_VIDEOGAMES:
+            return {
+                ...state,
+                videogames: payload
             };
         default: {
             return state

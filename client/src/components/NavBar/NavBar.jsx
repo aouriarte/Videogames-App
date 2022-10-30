@@ -7,7 +7,7 @@ import logo from "../../img/Logo.png";
 import styles from "./NavBar.module.css";
 import Filters from "../Filters/Filters";
 
-const NavBar = ({ setPage, setOrder }) => {
+const NavBar = ({ setOrder }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
@@ -20,11 +20,9 @@ const NavBar = ({ setPage, setOrder }) => {
     e.preventDefault();
     dispatch(getVideogameName(name));
     setName("");
-    setTimeout(() => {
-      setPage(1);
-    }, 6000); // 3000
   }
 
+  //-----------------------------------------------------------------------------
   return (
     <header className={styles.header}>
       <div className={styles.div}>
@@ -42,7 +40,7 @@ const NavBar = ({ setPage, setOrder }) => {
         <button className={styles.button}>CREATE VIDEOGAME 🧩</button>
       </Link>
       <div className={styles.filters}>
-        <Filters setPage={setPage} setOrder={setOrder} />
+        <Filters setOrder={setOrder} />
       </div>
       <div className={styles.searchBar}>
         <input

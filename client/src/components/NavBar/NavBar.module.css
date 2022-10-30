@@ -57,7 +57,7 @@
 .searchBar {
   display: flex;
   margin-top: 0.5rem;
-  margin-left: 4rem;
+  margin-left: 3rem;
 }
 
 .input {
@@ -75,7 +75,7 @@
 }
 
 .b {
-  margin-left: 15px;
+  margin-left: 10px;
   padding: 8px 17px;
   border-radius: 5px;
   font-weight: 550;
@@ -96,5 +96,5 @@
 /* Filter */
 .filters {
   margin-top: 0.5rem;
-  margin-left: 3rem;
+  margin-left: 1rem;
 }

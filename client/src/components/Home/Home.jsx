@@ -15,30 +15,12 @@ const Home = () => {
 
   // PAGINADO ----------------------------------------------------------------------------------
   const [order, setOrder] = useState("");
-  const [page, setPage] = useState(1);
-  const [videogamesPerPage, setVideogamesPerPage] = useState(15);
-  const indexOfLastVideogames = page * videogamesPerPage;
+  const currentPage = useSelector((state) => state.currentPage);
+  const videogamesPerPage = useSelector((state) => state.videogamesPerPage);
+  const indexOfLastVideogames = currentPage * videogamesPerPage;
   const indexFirstVideogames = indexOfLastVideogames - videogamesPerPage;
 
-  const currentVideogames = allVideogames?.slice(
-    indexFirstVideogames,
-    indexOfLastVideogames
-  );
-
-  const pagination = (pageNumber) => {
-    setPage(pageNumber);
-  };
-
-  // PAGINADO: NEXT & PREV ------------------------------------------------
-  function handlePrev(e) {
-    e.preventDefault();
-    setPage(page - 1);
-  }
-
-  function handleNext(e) {
-    e.preventDefault();
-    setPage(page + 1);
-  }
+  const currentVideogames = allVideogames?.slice(indexFirstVideogames, indexOfLastVideogames);
 
   //--------------------------------------------------------------------------------------------
   useEffect(() => {
@@ -48,7 +30,7 @@ const Home = () => {
   //--------------------------------------------------------------------------------------------
   return (
     <div className={styles.home}>
-      <NavBar setPage={setPage} setOrder={setOrder} />
+      <NavBar setOrder={setOrder} />
       <div className={styles.container}>
         {currentVideogames?.length < 1 ? (
           <Loading />
@@ -75,23 +57,11 @@ const Home = () => {
         )}
       </div>
       <div>
-        {/* <button className={styles.page} onClick={(e) => handlePrev(e)} disabled={page <= 1}>
-          {" "}
-          Prev{" "}
-        </button> */}
         <Pagination
-          videogamesPerPage={videogamesPerPage}
-          allVideogames={allVideogames?.length}
-          pagination={pagination}
+          // videogamesPerPage={videogamesPerPage}
+          // allVideogames={allVideogames?.length}
+          // pagination={pagination}
         />
-        {/* <button
-        className={styles.page}
-          onClick={(e) => handleNext(e)}
-          disabled={currentVideogames.length < 15}
-        >
-          {" "}
-          Next{" "}
-        </button> */}
       </div>
     </div>
   );

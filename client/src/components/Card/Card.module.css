@@ -4,7 +4,7 @@
   height: 200px;
 }
 
-.h3 {
+.h3, .label {
   color: #fff;
   text-shadow: 2px 1px 1px #54e7e78f;
 }

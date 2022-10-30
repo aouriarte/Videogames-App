@@ -1,4 +1,4 @@
-.select {
+.select, .reset {
   margin-left: 1rem;
   padding: 8px 6px;
   border-radius: 5px;
@@ -11,7 +11,7 @@
   text-align: justify;
 }
 
-.select:hover {
+.select:hover, .reset:hover {
   cursor: pointer;
   background-color: #059494;
   color: rgb(255, 254, 254);

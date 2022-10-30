@@ -6,13 +6,16 @@ export const GET_VIDEOGAME_DETAILS = 'GET_VIDEOGAME_DETAILS';
 export const POST_VIDEOGAME = 'POST_VIDEOGAME';
 export const GET_ALL_GENRES = 'GET_ALL_GENRES';
 
+export const CHANGE_PAGE = 'CHANGE_PAGE';
+
 export const FILTER_GENRES = "FILTER_GENRES";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_RATING = "ORDER_RATING";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
+export const CLEAN_VIDEOGAMES = "CLEAN_VIDEOGAMES";
 
-// ALL VIDEOGAMES: Traigo juegos -> BACK ---------------------------------------------
+// ALL VIDEOGAMES: Traigo juegos -> BACK -----------------------------------------------
 export const getAllVideogames = () => {
     return async (dispatch) => {
         try {
@@ -25,7 +28,7 @@ export const getAllVideogames = () => {
     };
 };
 
-// NAME: Traigo al juego por su nombre -------------------------------------------
+// NAME: Traigo al juego por su nombre -------------------------------------------------
 export const getVideogameName = (name) => {
     return async (dispatch) => {
         try {
@@ -39,7 +42,7 @@ export const getVideogameName = (name) => {
     };
 };
 
-// DETAILS: Traigo a el videogame y sus datos desde el ID -----------------------------
+// DETAILS: Traigo a el videogame y sus datos desde el ID -------------------------------
 export const getVideogameDetail = (id) => {
     return async (dispatch) => {
         try {
@@ -64,7 +67,7 @@ export const postVideogame = (payload) => {
     }
 };
 
-// ALL GENRES: Traigo los géneros -> BACK ---------------------------------------
+// ALL GENRES: Traigo los géneros -> BACK -----------------------------------------------
 export const getAllGenres = () => {
     return async (dispatch) => {
         try {
@@ -77,7 +80,15 @@ export const getAllGenres = () => {
     };
 };
 
-// Filtrados y Ordenamientos ----------------------------------------------------------
+// PAGINADO: Cambiar de página --------------------------------------------------------
+export const changePage = (payload) => {
+    return {
+        type: CHANGE_PAGE,
+        payload
+    };
+};
+
+// Filtrados y Ordenamientos ------------------------------------------------------------
 // Filtrar por GENRES:
 export const filterGenres = (payload) => {
     return {
@@ -116,4 +127,12 @@ export const cleanDetails = (payload) => {
         type: CLEAN_DETAILS,
         payload
     }
+};
+
+// Limpiar Filtros y Ordenamientos:
+export const cleanVideogames = (dispatch) => {
+    return dispatch({
+        type: CLEAN_VIDEOGAMES,
+        payload: []
+    });
 };
