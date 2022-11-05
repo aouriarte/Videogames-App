@@ -5,6 +5,7 @@ import {
   postVideogame,
   getAllGenres,
   getAllVideogames,
+  cleanVideogames,
 } from "../../redux/actions";
 import validate from "./Validator/Validate";
 
@@ -113,6 +114,8 @@ const Create = () => {
         genres: [],
       });
       history.push("/home");
+      dispatch(cleanVideogames());
+      dispatch(getAllVideogames());
     }
   };
 

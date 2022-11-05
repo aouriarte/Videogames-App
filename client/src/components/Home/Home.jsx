@@ -24,8 +24,10 @@ const Home = () => {
 
   //--------------------------------------------------------------------------------------------
   useEffect(() => {
-    dispatch(getAllVideogames());
-  }, [dispatch]);
+    if(allVideogames.length === 0){
+      dispatch(getAllVideogames());
+    }
+  }, [dispatch, allVideogames]);
 
   //--------------------------------------------------------------------------------------------
   return (
@@ -57,11 +59,7 @@ const Home = () => {
         )}
       </div>
       <div>
-        <Pagination
-          // videogamesPerPage={videogamesPerPage}
-          // allVideogames={allVideogames?.length}
-          // pagination={pagination}
-        />
+        <Pagination />
       </div>
     </div>
   );

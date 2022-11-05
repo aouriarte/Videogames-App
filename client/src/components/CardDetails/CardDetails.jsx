@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 
 import styles from "./CardDetails.module.css";
-import imgDefault from "../../img/image.png";
+import imgDefault from "../../assets/image.png";
 
 const CardDetails = () => {
   const dispatch = useDispatch();

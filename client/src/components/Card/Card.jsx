@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card.module.css";
-import imgDefault from "../../img/image.png";
+import imgDefault from "../../assets/image.png";
 
 const Card = ({ image, name, genres }) => {
   return (

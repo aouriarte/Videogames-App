@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getVideogameName } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
-import logo from "../../img/Logo.png";
+import logo from "../../assets/Logo.png";
 import styles from "./NavBar.module.css";
 import Filters from "../Filters/Filters";
 
