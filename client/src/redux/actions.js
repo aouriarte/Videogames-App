@@ -130,9 +130,8 @@ export const cleanDetails = (payload) => {
 };
 
 // Limpiar Filtros y Ordenamientos:
-export const cleanVideogames = (dispatch) => {
-    return dispatch({
+export const cleanVideogames = () => {
+    return {
         type: CLEAN_VIDEOGAMES,
-        payload: []
-    });
+    };
 };

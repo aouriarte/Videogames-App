@@ -46,7 +46,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 currentPage: Number(payload) ? parseInt(payload) : payload === 'Next' ? (parseInt(state.currentPage) + 1) : (parseInt(state.currentPage) - 1)
-
             };
         case FILTER_GENRES:
             const copyAll = state.allVideogames;
@@ -114,7 +113,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case CLEAN_VIDEOGAMES:
             return {
                 ...state,
-                videogames: payload
+                videogames: []
             };
         default: {
             return state
