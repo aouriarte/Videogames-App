@@ -20,11 +20,12 @@
 const server = require('./src/app.js');
 const { getAllGenres } = require('./src/controllers/index.js');
 const { conn } = require('./src/db.js');
+const { PORT } = process.env;
 
 // const port = process.env.PORT || 3000;
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
-  server.listen(process.env.PORT, () => {
+  server.listen(PORT, () => {
     getAllGenres();
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
