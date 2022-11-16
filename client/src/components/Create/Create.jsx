@@ -10,6 +10,7 @@ import {
 import validate from "./Validator/Validate";
 
 import styles from "./Create.module.css";
+import swal from "sweetalert";
 
 const Create = () => {
   const dispatch = useDispatch();
@@ -92,18 +93,18 @@ const Create = () => {
     e.preventDefault();
 
     if (Object.keys(errors).length !== 0) {
-      alert("Error. Check the form");
+      swal("Oops", "Complete the form!", "error");
     } else if (!input.name.length) {
-      alert("The name is required");
+      swal("The name is required");
     } else if (
       allVideogames.find(
         (v) => v.name.toLowerCase() === input.name.toLowerCase()
       )
     ) {
-      alert(`The ${input.name} already exists`);
+      swal("Incorrect", `The ${input.name} already exists`, "error");
     } else {
       dispatch(postVideogame(input));
-      alert("¡Your videogame is created!");
+      swal("Success", "¡Your videogame is created!", "success");
       setInput({
         name: "",
         rating: "",

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import swal from "sweetalert";
 
 export const GET_ALL_VIDEOGAMES = 'GET_ALL_VIDEOGAMES';
 export const GET_VIDEOGAME_NAME = 'GET_VIDEOGAMEGAME_NAME';
@@ -36,7 +37,7 @@ export const getVideogameName = (name) => {
             dispatch({ type: GET_VIDEOGAME_NAME, payload: game.data });
 
         } catch (error) {
-            alert('Videogame Not Found');
+            swal("Not Found", "That videogame does not exist", "error");
             console.log('ERROR EN getVideogameName/actions', error);
         }
     };
