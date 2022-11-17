@@ -8,15 +8,6 @@
   margin: 0%;
 }
 
-/* Loading */
-.load {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: -1rem;
-}
-
 /* Card */
 .container {
   margin-bottom: -6rem;

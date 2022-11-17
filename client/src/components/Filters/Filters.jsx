@@ -56,7 +56,7 @@ const Filters = ({ setOrder }) => {
   return (
     <div>
       <button className={styles.reset} onClick={(e) => handleClean(e)}>
-        🔄
+        Reload 🔄
       </button>
       <select className={styles.select} onChange={(e) => handleFilterGenres(e)}>
         <option value="all">Filter By Genre 🕹️</option>

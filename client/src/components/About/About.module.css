@@ -1,0 +1,66 @@
+.about {
+  background-image: url("../../assets/home.png");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+  overflow: auto;
+  margin: 0%;
+}
+
+.card {
+  margin: 50px auto;
+  width: 300px;
+  height: 320px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  border: solid rgb(231, 224, 224) 2px;
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.ico {
+    margin-right: 5px;
+    margin-top: 9px;
+    margin-bottom: -6px;
+}
+
+.links {
+  color: #fff;
+  font-weight: 500;
+}
+
+.links:link {
+  text-decoration: none;
+}
+
+.text,
+.h2 {
+  color: #fff;
+  text-shadow: 2px 1px 1px #54e7e78f;
+}
+
+.h2 {
+  font-family: "Silkscreen";
+}
+
+/* Button Go Home */
+.button {
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  background: rgba(0, 61, 71, 0.363);
+  color: #fff;
+  border: solid rgb(231, 224, 224) 2px;
+  display: inline-block;
+  text-shadow: 1.5px 1.2px 1px #54e6e7;
+  box-shadow: 0 0 6px #54e6e7;
+  font-family: "Silkscreen";
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #059494;
+  box-shadow: 0 0 4px #fff;
+}

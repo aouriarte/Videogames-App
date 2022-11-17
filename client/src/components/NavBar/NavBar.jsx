@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 
 import logo from "../../assets/Logo.png";
 import styles from "./NavBar.module.css";
-import Filters from "../Filters/Filters";
 
-const NavBar = ({ setOrder }) => {
+const NavBar = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
@@ -39,9 +38,9 @@ const NavBar = ({ setOrder }) => {
       <Link to="/create">
         <button className={styles.button}>CREATE VIDEOGAME 🧩</button>
       </Link>
-      <div className={styles.filters}>
-        <Filters setOrder={setOrder} />
-      </div>
+      <Link to="/about">
+        <button className={styles.button}>ABOUT 💡</button>
+      </Link>
       <div className={styles.searchBar}>
         <input
           className={styles.input}

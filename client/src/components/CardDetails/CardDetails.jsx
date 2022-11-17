@@ -66,7 +66,7 @@ const CardDetails = () => {
           </div>
         </div>
       ) : (
-        <div className={styles.load}>
+        <div>
           <Loading />
         </div>
       )}

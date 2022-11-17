@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import Card from "../Card/Card";
 import Loading from "../Loading/Loading";
 import Pagination from "../Pagination/Pagination";
+import Filters from "../Filters/Filters";
 
 import styles from "./Home.module.css";
 
@@ -20,11 +21,14 @@ const Home = () => {
   const indexOfLastVideogames = currentPage * videogamesPerPage;
   const indexFirstVideogames = indexOfLastVideogames - videogamesPerPage;
 
-  const currentVideogames = allVideogames?.slice(indexFirstVideogames, indexOfLastVideogames);
+  const currentVideogames = allVideogames?.slice(
+    indexFirstVideogames,
+    indexOfLastVideogames
+  );
 
   //--------------------------------------------------------------------------------------------
   useEffect(() => {
-    if(allVideogames.length === 0){
+    if (allVideogames.length === 0) {
       dispatch(getAllVideogames());
     }
   }, [dispatch, allVideogames]);
@@ -32,7 +36,10 @@ const Home = () => {
   //--------------------------------------------------------------------------------------------
   return (
     <div className={styles.home}>
-      <NavBar setOrder={setOrder} />
+      <NavBar />
+      <div className={styles.filters}>
+        <Filters setOrder={setOrder} />
+      </div>
       <div className={styles.container}>
         {currentVideogames?.length < 1 ? (
           <Loading />
