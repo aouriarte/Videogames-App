@@ -27,7 +27,8 @@ router.get('/:id', async (req, res) => {
         }
 
     } catch (error) {
-        res.status(400).send({ msg: 'ERROR EN RUTA GET A /videogame/:id' }, error);
+        console.log(error);
+        res.status(500).send({ msg: 'ERROR EN RUTA GET A /videogame/:id' });
     }
 });
 
@@ -42,7 +43,8 @@ router.delete('/:id', async (req, res) => { // faltaria hacerle el boton elimina
         res.send('erased');
         
     } catch (error) {
-        res.status(400).send({ msg: 'ERROR EN RUTA DELETE A /videogame/:id'}, error)
+        console.log(error);
+        res.status(500).send({ msg: 'ERROR EN RUTA DELETE A /videogame/:id' })
         
     }
 });

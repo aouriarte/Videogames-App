@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
         res.status(200).send(info);
         
     } catch (error) {
-        res.status(400).send({ msg: 'ERROR EN RUTA GET A /genres' }, error);
+        console.log(error);
+        res.status(500).send({ msg: 'ERROR EN RUTA GET A /genres' });
     }
 });
 

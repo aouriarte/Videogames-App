@@ -19,7 +19,8 @@ router.get('/', async (req, res) => {
             res.status(200).send(info);
         }
     } catch (error) {
-        res.status(400).send({ msg: 'ERROR EN RUTA GET A /videogames' }, error);
+        console.log(error);
+        res.status(500).send({ msg: 'ERROR EN RUTA GET A /videogames' });
     }
 });
 
@@ -31,7 +32,8 @@ router.post("/", async (req, res) => {
         res.status(200).send({ msg: `The videogame: ${data.name}, has been created` })
 
     } catch (error) {
-        res.status(400).send({ msg: 'ERROR EN RUTA POST A /videogames' }, error);
+        console.log(error);
+        res.status(500).send({ msg: 'ERROR EN RUTA POST A /videogames' });
     }
 });
 
