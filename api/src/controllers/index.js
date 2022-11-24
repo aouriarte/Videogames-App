@@ -10,7 +10,7 @@ const getApiInfo = async () => {
     try {
         for (let i = 0; i < 5; i++) {
             let info = await axios.get(urlApi)
-            info.data.results?.map(g => {
+            info.data.results.map(g => {
                 oneHundredGames.push({
                     id: g.id,
                     name: g.name,
