@@ -21,7 +21,7 @@ export const getAllVideogames = () => {
     return async (dispatch) => {
         try {
             let allGames = await axios.get('/videogames'); //'http://localhost:3001/videogames'
-            dispatch({ type: GET_ALL_VIDEOGAMES, payload: allGames.data });
+            dispatch({ type: GET_ALL_VIDEOGAMES, payload: allGames?.data });
 
         } catch (error) {
             console.log('ERROR EN getAllVideogames/actions', error);
@@ -73,7 +73,7 @@ export const getAllGenres = () => {
     return async (dispatch) => {
         try {
             let genres = await axios.get('/genres');
-            dispatch({ type: GET_ALL_GENRES, payload: genres.data });
+            dispatch({ type: GET_ALL_GENRES, payload: genres?.data });
 
         } catch (error) {
             console.log('ERROR EN getAllGenres/actions', error)
