@@ -12,13 +12,13 @@ const getApiInfo = async () => {
             let info = await axios.get(urlApi)
             info.data.results.map(g => {
                 oneHundredGames.push({
-                    id: g.id,
-                    name: g.name,
-                    image: g.background_image,
-                    released: g.released,
-                    rating: g.rating,
-                    platforms: g.platforms.map(p => p.platform.name),
-                    genres: g.genres.map(g => g.name),
+                    id: g[0].id,
+                    name: g[0].name,
+                    image: g[0].background_image,
+                    released: g[0].released,
+                    rating: g[0].rating,
+                    platforms: g[0].platforms.map(p => p.platform.name),
+                    genres: g[0].genres.map(g => g.name),
                 });
             });
             urlApi = info.data.next;
@@ -80,14 +80,14 @@ const getVideogameId = async (id) => {
 
         info = info.data
         let videogame = {
-            id: info.id,
-            name: info.name,
-            image: info.background_image,
-            description: info.description_raw,
-            released: info.released,
-            rating: info.rating,
-            platforms: info.platforms.map(p => p.platform.name),
-            genres: info.genres.map(g => { return { id: g.id, name: g.name } })
+            id: info[0].id,
+            name: info[0].name,
+            image: info[0].background_image,
+            description: info[0].description_raw,
+            released: info[0].released,
+            rating: info[0].rating,
+            platforms: info[0].platforms.map(p => p.platform.name),
+            genres: info[0].genres.map(g => { return { id: g.id, name: g.name } })
         }
         return videogame;
 
