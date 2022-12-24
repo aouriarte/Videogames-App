@@ -4,26 +4,43 @@ const { APIKEY } = process.env;
 
 // getApiInfo ------------------------------------------------------------------------------------------
 const getApiInfo = async () => {
-    let oneHundredGames = [];
-    let urlApi = `https://api.rawg.io/api/games?key=${APIKEY}`
+    // DEJO DE ANDAR EL MAP DE LA API DE RAWG
+    // let oneHundredGames = [];
+    // let urlApi = `https://api.rawg.io/api/games?key=${APIKEY}`
 
     try {
-        for (let i = 0; i < 5; i++) {
-            let info = await axios.get(urlApi)
-            info.data.results.map(g => {
-                oneHundredGames.push({
-                    id: g.id,
-                    name: g.name,
-                    image: g.background_image,
-                    released: g.released,
-                    rating: g.rating,
-                    platforms: g.platforms.map(p => p.platform.name),
-                    genres: g.genres.map(g => g.name),
-                });
-            });
-            urlApi = info.data.next;
-        }
-        return oneHundredGames;
+        // for (let i = 0; i < 5; i++) {
+        //     let info = await axios.get(urlApi)
+        //     info.data.results.map(g => {
+        //         oneHundredGames.push({
+        //             id: g.id,
+        //             name: g.name,
+        //             image: g.background_image,
+        //             released: g.released,
+        //             rating: g.rating,
+        //             platforms: g.platforms.map((p) => p.platform.name),
+        //             genres: g.genres.map((g) => g.name),
+        //         });
+        //     });
+        //     urlApi = info.data.next;
+        // }
+        // return oneHundredGames;
+
+        // PROVISIÓN CON RUN MOCKY
+        let info = await axios.get('https://run.mocky.io/v3/619af81b-e0cf-4cd5-930a-029eef9e4168')
+        let videogames = info.data.results.map(g => {
+            return {
+                id: g.id,
+                name: g.name ? g.name : null,
+                image: g.background_image,
+                description: g.description_raw,
+                released: g.released,
+                rating: g.rating,
+                platforms: g.platforms.map(p => p),
+                genres: g.genres.map(g => g),
+            }
+        })
+        return videogames;
 
     } catch (error) {
         console.log('ERROR EN controller: getApiInfo', error);
@@ -74,27 +91,27 @@ const getAllVideoGames = async () => {
 };
 
 // getVideogameId -------------------------------------------------------------------------------------
-const getVideogameId = async (id) => {
-    try {
-        let info = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APIKEY}`)
+// const getVideogameId = async (id) => {
+//     try {
+//         let info = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APIKEY}`)
 
-        info = info.data
-        let videogame = {
-            id: info.id,
-            name: info.name,
-            image: info.background_image,
-            description: info.description_raw,
-            released: info.released,
-            rating: info.rating,
-            platforms: info.platforms.map(p => p.platform.name),
-            genres: info.genres.map(g => { return { id: g.id, name: g.name } })
-        }
-        return videogame;
+//         info = info.data
+//         let videogame = {
+//             id: info.id,
+//             name: info.name,
+//             image: info.background_image,
+//             description: info.description_raw,
+//             released: info.released,
+//             rating: info.rating,
+//             platforms: info.platforms.map(p => p.platform),
+//             genres: info.genres.map(g => { return { id: g.id, name: g.name } })
+//         }
+//         return videogame;
 
-    } catch (error) {
-        console.log('ERROR EN controller: getVideogameId', error);
-    }
-};
+//     } catch (error) {
+//         console.log('ERROR EN controller: getVideogameId', error);
+//     }
+// };
 
 // getAllGenres ----------------------------------------------------------------------------------------
 const getAllGenres = async () => {
@@ -136,9 +153,9 @@ const postVideogame = async (data) => {
         await newVideogame.addGenre(genreDB);
 
     } catch (error) {
-        console.log('ERROR EN postVideogame', error)
+        console.log('ERROR EN controller: postVideogame', error)
     }
 };
 
 //------------------------------------------------------------------------------------------------------
-module.exports = { getApiInfo, getDBInfo, getAllVideoGames, getVideogameId, getAllGenres, postVideogame };
+module.exports = { getApiInfo, getDBInfo, getAllVideoGames, getAllGenres, postVideogame };
