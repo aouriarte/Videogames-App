@@ -33,11 +33,6 @@ let sequelize =
       { logging: false, native: false }
     );
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
-//   logging: false, // set to console.log to see the raw SQL queries
-//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-// });
-
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -57,10 +52,10 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
+// Importamos los modelos y los relacionamos
 const { Videogame, Genre } = sequelize.models;
 
-// Aca vendrian las relaciones
+
 Videogame.belongsToMany(Genre, { through: 'videogames_genres' })
 Genre.belongsToMany(Videogame, { through: 'videogames_genres' })
 

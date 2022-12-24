@@ -32,7 +32,7 @@ const About = () => {
         <br />
         <a
           className={styles.links}
-          href="https://github.com/Auriarte20"
+          href="https://github.com/aouriarte"
           target="_blank"
         >
           <img
@@ -47,7 +47,7 @@ const About = () => {
         <br />
         <a
           className={styles.links}
-          href="https://www.linkedin.com/in/aouriarte/"
+          href="https://www.linkedin.com/in/aouriarte"
           target="_blank"
         >
           <img

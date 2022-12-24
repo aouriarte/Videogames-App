@@ -7,20 +7,20 @@ const router = Router()
 router.get('/', async (req, res) => {
     try {
         const { name } = req.query;
-        let info = await getAllVideoGames();
+        let allGames = await getAllVideoGames();
 
         if (name) {
-            let gameName = info.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
+            let gameName = allGames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
             gameName.length
                 ? res.status(200).send(gameName)
                 : res.status(404).send({ msg: "Videogame Not Found" })
         }
         else {
-            res.status(200).send(info);
+            res.status(200).send(allGames);
         }
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ msg: 'ERROR EN RUTA GET A /videogames' });
+        console.log('ERROR EN RUTA GET A /videogames');
+        res.status(500).send({ msg: error.message });
     }
 });
 
@@ -32,8 +32,8 @@ router.post("/", async (req, res) => {
         res.status(200).send({ msg: `The videogame: ${data.name}, has been created` })
 
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ msg: 'ERROR EN RUTA POST A /videogames' });
+        console.log('ERROR EN RUTA POST A /videogames');
+        res.status(500).send({ msg: error.message });
     }
 });
 

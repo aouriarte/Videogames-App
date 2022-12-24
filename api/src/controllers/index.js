@@ -31,8 +31,8 @@ const getApiInfo = async () => {
         let videogames = info.data.results.map(g => {
             return {
                 id: g.id,
-                name: g.name ? g.name : null,
-                image: g.background_image,
+                name: g.name,
+                image: g.image,
                 description: g.description_raw,
                 released: g.released,
                 rating: g.rating,
@@ -132,7 +132,7 @@ const getAllGenres = async () => {
     }
 };
 
-// postVideogame --------------------------------------------------------------------------------------- +
+// postVideogame ---------------------------------------------------------------------------------------
 const postVideogame = async (data) => {
     try {
         const { name, image, description, released, rating, platforms, genres } = data;

@@ -20,7 +20,7 @@ export const CLEAN_VIDEOGAMES = "CLEAN_VIDEOGAMES";
 export const getAllVideogames = () => {
     return async (dispatch) => {
         try {
-            let allGames = await axios.get('/videogames'); //'http://localhost:3001/videogames'
+            let allGames = await axios.get('/videogames');
             dispatch({ type: GET_ALL_VIDEOGAMES, payload: allGames.data });
 
         } catch (error) {

@@ -8,18 +8,18 @@ const router = Router();
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        let info = await getAllVideoGames();
+        let allGames = await getAllVideoGames();
 
         if (id) {
-            let gameId = info.find(g => g.id == id)
+            let gameId = allGames.find(g => g.id == id)
             gameId
                 ? res.status(200).send(gameId)
                 : res.status(404).send({ msg: "Videogame Not Found" })
         }
 
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ msg: 'ERROR EN RUTA GET A /videogame/:id' });
+        console.log('ERROR EN RUTA GET A /videogame/:id');
+        res.status(500).send({ msg: error.message });
     }
 });
 
@@ -34,8 +34,8 @@ router.delete('/:id', async (req, res) => { // faltaria hacerle el boton elimina
         res.send({ msg: "Erased" });
 
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ msg: 'ERROR EN RUTA DELETE A /videogame/:id' })
+        console.log('ERROR EN RUTA DELETE A /videogame/:id');
+        res.status(500).send({ msg: error.message })
 
     }
 });

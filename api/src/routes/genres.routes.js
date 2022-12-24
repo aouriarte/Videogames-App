@@ -6,12 +6,12 @@ const router = Router();
 // RUTA GET -> /genres -----------------------------------------------------
 router.get('/', async (req, res) => {
     try {
-        let info = await getAllGenres();
-        res.status(200).send(info);
+        let allGenres = await getAllGenres();
+        res.status(200).json(allGenres);
 
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ msg: 'ERROR EN RUTA GET A /genres' });
+        console.log('ERROR EN RUTA GET A /genres');
+        res.status(500).send({ msg: error.message });
     }
 });
 

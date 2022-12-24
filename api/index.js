@@ -26,6 +26,6 @@ const { PORT } = process.env;
 conn.sync({ force: false }).then(() => {
   server.listen(PORT, () => {
     getAllGenres();
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
   });
 });
