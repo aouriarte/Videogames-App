@@ -22,7 +22,6 @@ const { getAllGenres } = require('./src/controllers/index.js');
 const { conn } = require('./src/db.js');
 const { PORT } = process.env;
 
-// const port = process.env.PORT || 3000;
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
   server.listen(PORT, () => {

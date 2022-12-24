@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { getVideogameId } = require('../controllers');
-const { Videogame, Genre } = require("../db");
+const { getAllVideoGames } = require('../controllers');
+const { Videogame } = require("../db");
 
 const router = Router();
 
@@ -8,22 +8,13 @@ const router = Router();
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        let info = await getAllVideoGames();
 
-        if (isNaN(id)) {
-            let game = await Videogame.findByPk(id, {
-                include: {
-                    model: Genre,
-                    attributes: ['name'],
-                    through: {
-                        attributes: [],
-                    },
-                }
-            })
-            res.status(200).json(game);
-        }
-        else {
-            let info = await getVideogameId(id);
-            res.status(200).send(info)
+        if (id) {
+            let gameId = info.find(g => g.id == id)
+            gameId
+                ? res.status(200).send(gameId)
+                : res.status(404).send({ msg: "Videogame Not Found" })
         }
 
     } catch (error) {
@@ -38,14 +29,14 @@ router.delete('/:id', async (req, res) => { // faltaria hacerle el boton elimina
         const { id } = req.params;
 
         await Videogame.destroy({
-            where: { id: id}
+            where: { id: id }
         });
-        res.send('erased');
-        
+        res.send({ msg: "Erased" });
+
     } catch (error) {
         console.log(error);
         res.status(500).send({ msg: 'ERROR EN RUTA DELETE A /videogame/:id' })
-        
+
     }
 });
 

@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
             let gameName = info.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
             gameName.length
                 ? res.status(200).send(gameName)
-                : res.status(404).send('Videogame Not Found')
+                : res.status(404).send({ msg: "Videogame Not Found" })
         }
         else {
             res.status(200).send(info);
