@@ -38,4 +38,4 @@ Videogames App es una SPA (Single Page Application).
 
 ## 💻 Demo
 
-Para visitar la aplicación web [click aquí](https://videogames-app-auriarte20.vercel.app).
+Para visitar la aplicación web [click aquí](https://videogames-app-aouriarte.vercel.app).
